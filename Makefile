@@ -4,20 +4,20 @@ docker-up:
 docker-down:
 	docker-compose down
 
-docker-build: perm
+docker-build:
 	docker-compose up --build -d
 
 test:
-	docker exec app_php-cli_1 vendor/bin/phpunit --colors=always
+	docker-compose exec php-cli vendor/bin/phpunit --colors=always
 
 assets-install:
-	docker exec app_node_1 yarn install
+	docker-compose exec node yarn install
 
 assets-dev:
-	docker exec app_node_1 yarn run dev
+	docker-compose exec node yarn run dev
 
 assets-watch:
-	docker exec app_node_1 yarn run watch
+	docker-compose exec node yarn run watch
 
 perm:
 	sudo chown -R ${USER}:${GROUP} ~/.npm
